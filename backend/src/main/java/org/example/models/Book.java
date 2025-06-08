@@ -13,7 +13,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "BIGINT UNSIGNED")
+    @Column(name = "id", columnDefinition = "BIGINT UNSIGNED")//keep foreign keys from mismatching
     private Long id;
 
     private String title;

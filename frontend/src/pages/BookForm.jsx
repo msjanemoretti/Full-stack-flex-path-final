@@ -17,6 +17,7 @@ export default function BookForm() {
     title: '',
     author: '',
     description: '',
+    genre: '',
     imageUrl: '',
     link: ''
   });
@@ -56,6 +57,7 @@ export default function BookForm() {
           title: '',
           author: '',
           description: '',
+          genre: '',
           imageUrl: '',
           link: ''
         });
@@ -77,6 +79,7 @@ export default function BookForm() {
         <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" />
         <input name="author" value={formData.author} onChange={handleChange} placeholder="Author" />
         <input name="description" value={formData.description} onChange={handleChange} placeholder="Description" />
+        <input name="genre" value={formData.genre} onChange={handleChange} placeholder="Genre" />
         <input name="imageUrl" value={formData.imageUrl} onChange={handleChange} placeholder="Cover URL" />
         <input name="link" value={formData.link} onChange={handleChange} placeholder="Link (optional)" />
         <button type="submit">Submit</button>

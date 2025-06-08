@@ -51,16 +51,19 @@ public ResponseEntity<Book> getBookById(@PathVariable Long id) {
     }
 
     //updating info on a book by id
-    @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
-        return bookRepository.findById(id)
+    
+   @PutMapping("/{id}")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
+    return bookRepository.findById(id)
         .map(book -> {
             book.setTitle(updatedBook.getTitle());
             book.setAuthor(updatedBook.getAuthor());
             book.setDescription(updatedBook.getDescription());
+            book.setGenre(updatedBook.getGenre()); // ✅ this was missing!
 
             return bookRepository.save(book);
         })
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Title not found"));
-    }
+}
 }

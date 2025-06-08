@@ -49,7 +49,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
+            .authorizeHttpRequests(auth -> auth //below allows specific route requestrs " "
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
@@ -59,6 +59,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/api/bookmarks/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/books").hasAuthority("ROLE_ADMIN")
                     .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/books/**").hasAuthority("ROLE_ADMIN")
                     .requestMatchers(HttpMethod.GET, "/api/bookmarks/user/**").permitAll()
                     .anyRequest().authenticated()
             )
